@@ -22,6 +22,7 @@ class prometheus::config {
         "-web.console.libraries=${prometheus::shared_dir}/console_libraries",
       ]
     } else {
+
       # helper variable indicating prometheus version, so we can use on this information in the template
       $prometheus_v2 = true
       $daemon_flags = [
@@ -30,7 +31,7 @@ class prometheus::config {
         "--storage.tsdb.retention=${prometheus::server::storage_retention}",
         "--web.console.templates=${prometheus::server::shared_dir}/consoles",
         "--web.console.libraries=${prometheus::server::shared_dir}/console_libraries",
-        "--web.external-url='${prometheus::server::external_url}'",
+        "--web.external-url=${prometheus::server::external_url}",
       ]
     }
 
